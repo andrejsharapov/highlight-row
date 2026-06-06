@@ -1,0 +1,89 @@
+{
+  "name": "highlight-row",
+  "displayName": "Highlight Row",
+  "description": "Right-click on a row -> highlight/unhighlight row permanently",
+  "version": "1.0.0",
+  "publisher": "andrejsharapov",
+  "private": false,
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrejsharapov/highlight-row"
+  },
+  "homepage": "https://github.com/andrejsharapov/highlight-row#readme",
+  "bugs": {
+    "url": "https://github.com/andrejsharapov/highlight-row/issues"
+  },
+  "author": {
+    "name": "Andrej Sharapov",
+    "url": "https://github.com/andrejsharapov"
+  },
+  "keywords": [
+    "highlight",
+    "row",
+    "rows",
+    "multiple",
+    "line",
+    "lines",
+    "selected"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "highlight-row.highlightRow",
+        "title": "Highlight row"
+      },
+      {
+        "command": "highlight-row.unhighlightRow",
+        "title": "Unhighlight row"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "highlight-row.highlightRow",
+          "group": "navigation",
+          "when": "editorTextFocus && !highlightRow.hasMultipleSelections && !highlightRow.isHighlighted"
+        },
+        {
+          "command": "highlight-row.unhighlightRow",
+          "group": "navigation",
+          "when": "editorTextFocus && !highlightRow.hasMultipleSelections && highlightRow.isHighlighted"
+        },
+        {
+          "command": "highlight-row.highlightRow",
+          "group": "navigation",
+          "when": "editorTextFocus && highlightRow.hasMultipleSelections"
+        },
+        {
+          "command": "highlight-row.unhighlightRow",
+          "group": "navigation",
+          "when": "editorTextFocus && highlightRow.hasMultipleSelections"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Highlight Row",
+      "properties": {
+        "highlightRow.backgroundColor": {
+          "type": "string",
+          "default": "#4488ff44",
+          "description": "Row highlight color (rgba, #hex or CSS color)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package"
+  }
+}
